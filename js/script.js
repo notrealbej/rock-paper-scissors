@@ -9,6 +9,10 @@ function getComputerChoice(){
 
 function getHumanChoice(){
     let choice = prompt("Enter 1 for Rock, 2 for Paper and 3 for Scissors");
+    if(choice > 3 || choice < 1){
+        alert("Enter valid number");
+        return;
+    }
     let humanChoice = choices[parseInt(choice) - 1];
     return humanChoice;
 }
@@ -34,10 +38,26 @@ function playRound(humanChoice, computerChoice){
     else{
         console.log("Draw! both player and computer chose " + computerChoice);
     }
-    console.log("Human Score: " + humanScore + "\nComputer Score: " + computerScore);
 }
 
-const humanChoice = getHumanChoice();
-const computerChoice = getComputerChoice();
+function playGame(){
+    for(let i = 0; i < 5; i++){
+        const humanChoice = getHumanChoice();
+        const computerChoice = getComputerChoice();
 
-playRound(humanChoice, computerChoice);
+        playRound(humanChoice, computerChoice);
+    }
+
+    console.log("Final Scores- \nHuman: " + humanScore + " Computer: " + computerScore);
+    if(computerScore > humanScore){
+        console.log("You lose!");
+    }
+    else if(humanScore > computerScore){
+        console.log("You win!");
+    }
+    else{
+        console.log("Draw!");
+    }
+}
+
+playGame();
