@@ -1,3 +1,5 @@
+let humanScore = 0;
+let computerScore = 0;
 const choices = ["Rock", "Paper", "Scissors"];
 
 function getComputerChoice(){
@@ -11,3 +13,31 @@ function getHumanChoice(){
     return humanChoice;
 }
 
+function playRound(humanChoice, computerChoice){
+    let winner = "Human";
+
+    if((humanChoice === "Rock" && computerChoice === "Paper") || (humanChoice === "Paper" && computerChoice === "Scissors") || (humanChoice === "Scissors" && computerChoice === "Rock")){
+        winner = "Computer";
+    }
+    else if(humanChoice === computerChoice){
+        winner = "None";
+    }
+
+    if(winner === "Human"){
+        humanScore += 1;
+        console.log("You win! " + humanChoice + " beats " + computerChoice);
+    }
+    else if(winner === "Computer"){
+        computerScore += 1;
+        console.log("You lose! " + computerChoice + " beats " + humanChoice);
+    }
+    else{
+        console.log("Draw! both player and computer chose " + computerChoice);
+    }
+    console.log("Human Score: " + humanScore + "\nComputer Score: " + computerScore);
+}
+
+const humanChoice = getHumanChoice();
+const computerChoice = getComputerChoice();
+
+playRound(humanChoice, computerChoice);
